@@ -56,15 +56,15 @@ public class Konsola extends JPanel {
             }
         }
     }
-    private PoleKomunikatu powiadomieniaRuchy;//Pole tekstowe
-    private PoleKomunikatu powiadomieniaPunkty;
+    private final PoleKomunikatu powiadomieniaRuchy;//Pole tekstowe
+    private final PoleKomunikatu powiadomieniaPunkty;
     private String bufor;//Bufor poprzedniego komunikatu
     private Thread czas;//Wątek potrzebny do mierzenia czasu
     private int punktyMysz;//Punkty graczy
     private int punktyKlaw;
     private String nazwaPrzeciwnika = null;//Wyświetlana nazwa przeciwnika
     private final int szerokosc; //Ilość kolumn JTextField
-    private Gra refgra;//Referencja na obiekt typu gra
+    private final Gra refgra;//Referencja na obiekt typu gra
 
     /**
      * Tworzy nową konsolę, na której wyświetlane są komunikaty

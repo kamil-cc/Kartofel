@@ -32,8 +32,8 @@ public class Gra extends JPanel implements ActionListener, KeyListener {
      */
     private class Zawartosc extends JPanel {
 
-        private Konsola konsola; //Referencja na konsolę
-        private Tabela tabela; //Referencja na tabelę
+        private final Konsola konsola; //Referencja na konsolę
+        private final Tabela tabela; //Referencja na tabelę
 
         /**
          * Tworzy klasę odpowiedzialną za ułożenie konsoli i tabeli
@@ -52,11 +52,11 @@ public class Gra extends JPanel implements ActionListener, KeyListener {
         }
     }
     private Logika logika;//Logika gry
-    private Dimension min;//Minimalny rozmiar okna
-    private PasekMenu menu;//Referencja na pasek menu
-    private JFrame frame;//Okno programu
+    private final Dimension min;//Minimalny rozmiar okna
+    private final PasekMenu menu;//Referencja na pasek menu
+    private final JFrame frame;//Okno programu
     private SwingWorker swingworker;//Referencja na Java SwingWorker
-    private Zawartosc zawartosc; //Prywatna klasa z treścią okna
+    private final Zawartosc zawartosc; //Prywatna klasa z treścią okna
     protected final int rozmiar; //Rozmir macierzy
     private boolean sterowanieKlawiaturą;//Czy akywne  jest sterownaie z klawiatury
     private int poprzedniX;//Poprzedni ruch wykonany przez gracza
@@ -64,10 +64,10 @@ public class Gra extends JPanel implements ActionListener, KeyListener {
     private int punktyMysz;//Punkty gracza wykonującego ruchy myszą
     private int punktyKlaw;//Punkty gracza wykonującego ruchy klawiaturą
     private int komunikat;//Numer komunikatu po wykonaniu ruchu
-    private Random rand;//Losowa wartość (który gracz zaczyna)
-    private Image ikona;//Ikona programu
+    private final Random rand;//Losowa wartość (który gracz zaczyna)
+    private final Image ikona;//Ikona programu
     private final String sciezkaIkony;//Ścieżka do ikony programu
-    private InputStream strumienIkony;//Strumień, w którym ikona jest otwarta
+    private final InputStream strumienIkony;//Strumień, w którym ikona jest otwarta
 
     /**
      * Konstruktor, tworzy okno i jego komponenty, ustala wygląd, rozpoczyna pierwszą grę
@@ -75,6 +75,7 @@ public class Gra extends JPanel implements ActionListener, KeyListener {
      * @throws InstantiationException
      * @throws IllegalAccessException
      * @throws UnsupportedLookAndFeelException
+     * @throws java.io.IOException
      */
     public Gra() throws ClassNotFoundException, InstantiationException,
             IllegalAccessException, UnsupportedLookAndFeelException, IOException {

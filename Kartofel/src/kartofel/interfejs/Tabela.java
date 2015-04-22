@@ -20,21 +20,21 @@ import kartofel.klasaMain.Main;
  */
 public class Tabela extends JPanel {
 
-    private Macierz macierz; //Referencja na obiekt prywatnej klasy Macierz
+    private final Macierz macierz; //Referencja na obiekt prywatnej klasy Macierz
     private final int rozmiar; //Rozmiar macierzy
     private final int iloscPrzyciskow; //Ilość rodzajów ikon
-    private Gra refgra; //Referencja na obiekt typu gra (potrzebana do KeyListener)
-    private Image[] obrazki; //Tablica przechowująca obrazki
-    private ImageIcon[] ikony; //Tablica przechowująca ikony
-    private String[] sciezkiIkon;
-    private InputStream[] strumienieIkon;
+    private final Gra refgra; //Referencja na obiekt typu gra (potrzebana do KeyListener)
+    private final Image[] obrazki; //Tablica przechowująca obrazki
+    private final ImageIcon[] ikony; //Tablica przechowująca ikony
+    private final String[] sciezkiIkon;
+    private final InputStream[] strumienieIkon;
 
     /**
      * Klasa prywatna do przechowywania przycisków
      */
     private class Macierz extends JPanel { 
 
-        private JButton[][] komorki;//Tablica referencji na przyciski JButtonJButton
+        private final JButton[][] komorki;//Tablica referencji na przyciski JButtonJButton
 
         /**
          * Konstruktor klasy prywatnej
@@ -71,6 +71,7 @@ public class Tabela extends JPanel {
      * Tworzy nową tabelę
      * @param gra Referencja na obiekt typu gra
      * @param rozm Rozmiar macierzy
+     * @throws java.io.IOException
      */
     public Tabela(Gra gra, int rozm) throws IOException {
         super(); //Konstruktor domyślny JPanel
@@ -111,6 +112,7 @@ public class Tabela extends JPanel {
      * Zaznacza przycisk podany w argumentach (ustawia focus)
      * @param x Parametr X komórki
      * @param y Parametr Y komórki
+     * @return 
      */
     public boolean zaznaczKomorke(int x, int y) { 
         if (macierz.komorki[x][y].isEnabled()) {

@@ -16,17 +16,17 @@ import kartofel.klasyWyliczeniowe.Przeciwnik;
  */
 public class PasekMenu extends JPanel implements ActionListener {
 
-    private JMenuBar pasekMenu;
-    private JMenu menuPlik;
-    private JMenu menuPrzeciwnik;
-    private JMenu menuInformacje;
-    private ButtonGroup grupaRadio;
-    private JRadioButtonMenuItem komputerLokalny;
-    private JRadioButtonMenuItem osobaLokalna;
-    private JMenuItem menuNowaGra;
-    private JMenuItem zamknijProgram;
-    private JMenuItem wyswietlPomoc;
-    private JMenuItem wyswietlAutora;
+    private final JMenuBar pasekMenu;
+    private final JMenu menuPlik;
+    private final JMenu menuPrzeciwnik;
+    private final JMenu menuInformacje;
+    private final ButtonGroup grupaRadio;
+    private final JRadioButtonMenuItem komputerLokalny;
+    private final JRadioButtonMenuItem osobaLokalna;
+    private final JMenuItem menuNowaGra;
+    private final JMenuItem zamknijProgram;
+    private final JMenuItem wyswietlPomoc;
+    private final JMenuItem wyswietlAutora;
     private Gra gra;
 
     /**

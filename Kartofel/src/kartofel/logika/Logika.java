@@ -6,30 +6,34 @@ import kartofel.klasyWyliczeniowe.Przyciski;
 
 /**
  * Klasa przechowująca planszę na której toczy się gra
+ *
  * @author Kamil Burzyński
  */
 public class Logika {
 
     private boolean kolejka;
     private final int rozmiar;
-    private Pole[][] plansza;
-    private Przeciwnik przeciwnik;
+    private final Pole[][] plansza;
+    private final Przeciwnik przeciwnik;
     private int punktyK;
     private int punktyM;
     private int komunikat;
     private int przyrostPkt;
     private int licznikM;
     private int licznikK;
-    private Random rand;
+    private final Random rand;
     private boolean komputerZaczyna;
     private int ruchKomputeraX;
     private int ruchKomputeraY;
 
     /**
      * Tworzy nową planszę, jest wywoływany dla każdej nowej gry
+     *
      * @param przec Przeciwnik (komputer lub osoba)
-     * @param rozpoczyna Kto rozpoczyna grę, true - gracz z myszą, false gracz z klawiaturą
+     * @param rozpoczyna Kto rozpoczyna grę, true - gracz z myszą, false gracz z
+     * klawiaturą
      * @param rozm Rozmiar planszy
+     * @param random
      */
     public Logika(Przeciwnik przec, boolean rozpoczyna, int rozm, Random random) {
         rozmiar = rozm;
@@ -71,6 +75,7 @@ public class Logika {
 
     /**
      * Zwraca planszę do interfejsu użytkownika
+     *
      * @return Dwuwymiarowa tablica typu Przyciski[rozmiar][rozmiar]
      */
     public Przyciski[][] getPlansza() {
@@ -86,7 +91,9 @@ public class Logika {
     }
 
     /**
-     * Sprawdza jaką modyfikację należy wprowadzić po kliknięciu jednego z przycisków
+     * Sprawdza jaką modyfikację należy wprowadzić po kliknięciu jednego z
+     * przycisków
+     *
      * @param x Współrzędna x klikniętego przycisku
      * @param y Współrzędna y klikniętego przycisku
      * @return Zwraca obiekt typu Wynik z zapisanymi modyfikacjami
@@ -177,7 +184,9 @@ public class Logika {
 
     /**
      * Kto rozpoczyna rozgrywkę
-     * @return Zwraca true - rozpoczyna gracz sterujący myszą, false - sterujący klawiaturą
+     *
+     * @return Zwraca true - rozpoczyna gracz sterujący myszą, false - sterujący
+     * klawiaturą
      */
     public boolean ktoryRozpoczyna() {
         return kolejka;
@@ -185,6 +194,7 @@ public class Logika {
 
     /**
      * Czy komputer wykonał ruch jako pierwszy gracz
+     *
      * @return true - tak, false - nie
      */
     public boolean czyKomputerRozpoczyna() {
@@ -193,31 +203,23 @@ public class Logika {
 
     /**
      * Jeśli gramy z komputerem zwraca true
+     *
      * @return true - tak, false - nie
      */
     public boolean graZKomputerem() {
-        if (przeciwnik == Przeciwnik.KOMPUTER) {
-            return true;
-        }
-        return false;
+        return przeciwnik == Przeciwnik.KOMPUTER;
     }
 
     /**
      * Zmienia kolejkę na następną
      */
     private void przesunKolejke() {
-        if (kolejka) {
-            kolejka = false;
-        } else {
-            kolejka = true;
-        }
+        kolejka = !kolejka;
     }
 
-    private boolean ruchNiedozwolony(int x, int y) {//Czy można wykonać taki ruch
-        if (plansza[x][y].zwrocPrzycisk() == Przyciski.PUSTY) {
-            return false;//Można wykonać taki ruch
-        }
-        return true;
+    private boolean ruchNiedozwolony(int x, int y) {
+        //Czy można wykonać taki ruch
+        return plansza[x][y].zwrocPrzycisk() != Przyciski.PUSTY;
     }
 
     private void ktoWygrywa() {//Kto wygrywa grę
@@ -238,7 +240,7 @@ public class Logika {
         int[] poziomaPrzerwa = new int[rozmiar];
         int[] pionowaPrzerwa = new int[rozmiar];
         int[] skosPlPrzerwa = new int[rozmiar];
-        int licznik = 0;
+        int licznik;
         int wierszMin = rozmiar;
         int kolumnaMin = rozmiar;
         int skosPlMin = rozmiar;
@@ -246,9 +248,9 @@ public class Logika {
         int brakujaceK = rozmiar;
         int brakujaceSkosPl = rozmiar;
         int losowy;
-        int punktySkos = 0;
-        int punktyPion = 0;
-        int punktyPoziom = 0;
+        int punktySkos;
+        int punktyPion;
+        int punktyPoziom;
 
         for (int i = 0; i < rozmiar; i++) {//Liczenie pustych pól w poziomie
             licznik = 0;
@@ -323,7 +325,6 @@ public class Logika {
         //System.out.println("Pion brakuje " + brakujaceK + " można zdobyć " + (rozmiar - kolumnaMin));
         //System.out.println("Poziom brakuje " + brakujaceW + " można zdobyć " + (rozmiar - wierszMin));
         //System.out.println("Skos brakuje " + brakujaceSkosPl + " można zdobyć " + (skosPlMin + 1));
-
         //Ustalanie punktów
         punktyPion = rozmiar - kolumnaMin;
         punktyPoziom = rozmiar - wierszMin;
@@ -403,7 +404,7 @@ public class Logika {
     }
 
     private int liczWiersze() {//Liczy punkty w wierszach
-        boolean linia = false;
+        boolean linia;
         for (int i = 0; i < rozmiar; i++) {//Poziomo
             linia = true;
             if (plansza[i][0].zwrocPoziom()) {//W tym wierszu już jest linia
@@ -431,7 +432,7 @@ public class Logika {
     }
 
     private int liczKolumny() {//Liczy punkty w kolumnach
-        boolean linia = false;
+        boolean linia;
         for (int i = 0; i < rozmiar; i++) {//Pionowo
             linia = true;
             if (plansza[0][i].zwrocPion()) {//W tej kolumnie jest już linia
@@ -459,7 +460,7 @@ public class Logika {
     }
 
     private int skosPl() {//Liczenie punktów po skosie
-        boolean linia = false;
+        boolean linia;
         for (int i = 0; i < rozmiar; i++) {
             linia = true;
             if (plansza[0][i].zwrocSkosPl()) {//Już skreślone
@@ -485,7 +486,7 @@ public class Logika {
     }
 
     private int skosLp1() {//Liczenie punktów po skosie
-        boolean linia = false;
+        boolean linia;
         int j;
         for (int i = 0; i < rozmiar; i++) {
             linia = true;
@@ -525,7 +526,7 @@ public class Logika {
     }
 
     private int skosLp2() {
-        boolean linia = false;
+        boolean linia;
         int j;
         for (int i = 0; i < rozmiar; i++) {//Skos
             linia = true;
