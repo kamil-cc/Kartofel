@@ -1,6 +1,6 @@
 # Kartofel
 GUI based "dot" game  
---------------------
+  
 Prosta gra napisana w języku Java.  
 Do komunikacji z użytkownikiem wykorzystuje GUI Swing. Za rozmieszczenie elementów odpowiada UIManager.  
 Logika gry oparta na algorytmie deterministycznym. Elementy logiki oddzielone od interfejsu za pomocą klasy SwingWorker.  
