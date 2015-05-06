@@ -1,4 +1,5 @@
 # Kartofel
+![alt tag](https://raw.githubusercontent.com/kamil-cc/Kartofel/master/screen.png)  
 GUI based "dot" game  
   
 Prosta gra napisana w języku Java.  
